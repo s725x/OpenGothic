@@ -148,6 +148,11 @@ jobs:
       - name: Build APK
         run: |
           "$ANDROID_HOME/cmake/3.22.1/bin/cmake" --build build/android --target OpenGothic-apk
+      - name: Upload Android APK
+        uses: actions/upload-artifact@v6
+        with:
+          name: opengothic_${{ needs.setup.outputs.semver }}_android_arm64
+          path: build/android/OpenGothic-apk/build/outputs/apk/release/OpenGothic-apk-release.apk
 
   windows:
     needs: setup
